@@ -9,3 +9,26 @@
 # **Ввод:** пара-ра-рам рам-пам-папам па-ра-па-да    
 #     **Вывод:** Парам пам-пам  
 
+
+def count_vowels(word):
+    vowels = "aeiouаеёиоуыэюя"
+    return sum(1 for char in word if char in vowels)
+
+def check_rhythm(poem):
+    lines = poem.split()
+    syllables_count = None
+    
+    for line in lines:
+        words = line.split("-")
+        line_syllables = sum(count_vowels(word) for word in words)
+        
+        if syllables_count is None:
+            syllables_count = line_syllables
+        elif line_syllables != syllables_count:
+            return "Пам парам"
+    
+    return "Парам пам-пам"
+
+poem_input = 'пара-ра-рам рам-пам-папам па-ра-па-да'
+result = check_rhythm(poem_input)
+print(result)
